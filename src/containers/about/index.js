@@ -11,16 +11,18 @@ class About extends React.PureComponent {
       <div>
         <h1>About</h1>
         <p>About us</p>
-        <button onClick={() => this.props.changePage()}>Go to about page via redux</button>
+        <button onClick={() => this.props.push('/about-us')}>Go to about page via redux</button>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators 
-({
-  changePage: () => push('/about-us')
-}, dispatch)
+function mapDispatchToProps(dispatch) {
+  return {
+    push: (url) => dispatch(push(url)),
+    dispatch,
+  };
+}
 
 export default connect(
   null, 

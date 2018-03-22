@@ -14,15 +14,18 @@ class Home extends React.PureComponent {
       <div>
         <Title>Home</Title>
         <p>This is your home!</p>
-        <button onClick={() => this.props.changePage()}>Go to about page via redux</button>
+        <button onClick={() => this.props.push('/about-us')}>Go to about page via redux</button>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  changePage: () => push('/about-us')
-}, dispatch)
+function mapDispatchToProps(dispatch) {
+  return {
+    push: (url) => dispatch(push(url)),
+    dispatch,
+  };
+}
 
 export default connect(
   null,
