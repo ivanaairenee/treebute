@@ -1,9 +1,12 @@
 module.exports = {
+    "globals": {
+        "process": true
+    },
     "env": {
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,

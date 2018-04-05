@@ -6,12 +6,12 @@ import rootReducer from './modules'
 
 export const history = createHistory()
 
-const initialState = {}
-const enhancers = []
+const initialState = {};
+const enhancers = [];
 const middleware = [
   thunk,
   routerMiddleware(history)
-]
+];
 
 if (process.env.NODE_ENV === 'development') {
   const devToolsExtension = window.devToolsExtension
