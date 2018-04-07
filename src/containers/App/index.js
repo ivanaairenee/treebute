@@ -3,8 +3,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import HomePage from '../HomePage';
-import NotFoundPage from '../NotFoundPage';
+import HomePage from 'containers/HomePage';
+import NotFoundPage from 'containers/NotFoundPage';
 
 import { theme } from './theme';
 

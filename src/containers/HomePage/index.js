@@ -1,9 +1,14 @@
 import React from 'react';
+import ExampleComponent from 'components/ExampleComponent';
+import { HomePageElement } from './style';
 
 export default class HomePage extends React.Component {
   render() {
     return (
-      <div>hello</div>
+      <HomePageElement>
+        hello
+        <ExampleComponent />
+      </HomePageElement>
     );
   }
 }
