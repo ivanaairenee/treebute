@@ -1,5 +1,6 @@
 export const theme = {
   'black': '#000000',
+  'gray': '#9AA09D',
   'white': '#F2F2F2',
   'green': '#22BD9E',
   'blue': '#4E6692',

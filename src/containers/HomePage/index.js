@@ -6,7 +6,8 @@ import { HomePageElement } from './style';
 
 export default class HomePage extends React.Component {
   componentDidMount() {
-    axios.get(`https://api.trello.com/1/boards/q5x5LRZA/cards/?fields=badges,name&members=true&member_fields=fullName&badges=true`)
+    const boardId = localStorage.getItem("boardId");
+    axios.get(`https://api.trello.com/1/boards/${boardId}/cards/?fields=badges,name&members=true&member_fields=fullName&badges=true`)
       .then(res => {
         const cards = res.data;
         const cardNames = [];
@@ -69,8 +70,7 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <HomePageElement>
-        <i className="fas fa-tree" />hello
-s        <CardTask/>
+        <CardTask/>
       </HomePageElement>
     );
   }
