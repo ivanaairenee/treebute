@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import CardMember from 'components/CardMember';
 
 export default class MemberList extends React.Component {
   componentDidMount() {
@@ -34,7 +35,7 @@ export default class MemberList extends React.Component {
               contributionPoints: 0
             }));
           }
-    
+
           const cardNames = JSON.parse(localStorage.getItem('cardNames'));
           const cardWeights = JSON.parse(localStorage.getItem('cardWeights'));
           if (cardNames) {
@@ -50,8 +51,6 @@ export default class MemberList extends React.Component {
                   }
               })
           }
-
-          this.createMemberRatingFeedback(memberList);
 
           localStorage.setItem('memberList', JSON.stringify(memberList));
           if (localStorage.getItem('memberList')) {
@@ -71,27 +70,11 @@ export default class MemberList extends React.Component {
     localStorage.setItem('cardWeights', JSON.stringify(cardWeights));
   }
 
-  createMemberRatingFeedback(memberList) {
-    const memberRatingFeedback = localStorage.getItem('memberRatingFeedback') === null ? {} : JSON.parse(localStorage.getItem('memberRatingFeedback'));
-    memberList.map(member => {
-      memberList.map(evaluatedMember => {
-        if ((member !== evaluatedMember) && (memberRatingFeedback[member.id] === undefined)) {
-          memberRatingFeedback[member.id] = {};
-        }
-
-        if (((member !== evaluatedMember)) && (memberRatingFeedback[member.id][evaluatedMember.id] === undefined)) {
-          memberRatingFeedback[member.id][evaluatedMember.id] = {};
-          memberRatingFeedback[member.id][evaluatedMember.id]['rating'] = 0;
-          memberRatingFeedback[member.id][evaluatedMember.id]['feedback'] = '';
-        }
-      })
-    });
-    localStorage.setItem('memberRatingFeedback', JSON.stringify(memberRatingFeedback));
-  }
-
   render() {
     return (
-        <div></div>
+        <div>
+          <CardMember></CardMember>
+        </div>
     );
   }
 }
