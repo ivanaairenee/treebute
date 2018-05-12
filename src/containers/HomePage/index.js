@@ -11,6 +11,7 @@ export default class HomePage extends React.Component {
         const cardNames = [];
         if (cards) {
           cards.map(card => cardNames.push({
+            id: card.id,
             name: card.name,
             assignee: card.members[0],
             status: card.badges.checkItems === card.badges.checkItemsChecked ? "Complete" : "Incomplete",
@@ -26,8 +27,7 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <HomePageElement>
-        <i className="fas fa-tree" />hello
-        <ExampleComponent />
+        <i className="fas fa-tree" />
       </HomePageElement>
     );
   }

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const HomePageElement = styled.div`
-  font-size: 2rem;  
-  color: ${props => props.theme.red};
+  width: 100%;
+  min-height: 100vh;
+  background: ${props => props.theme.gradientBackground};
 `;
