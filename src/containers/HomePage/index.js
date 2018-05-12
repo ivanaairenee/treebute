@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ExampleComponent from 'components/ExampleComponent';
 import CardTask from 'components/CardTask';
+import Chart from 'components/Chart';
 import { HomePageElement } from './style';
 
 export default class HomePage extends React.Component {
@@ -21,9 +22,6 @@ export default class HomePage extends React.Component {
         }
         this.createCardWeights(cardNames);
         localStorage.setItem('cardNames', JSON.stringify(cardNames));
-        if (localStorage.getItem('cardNames')) {
-          // console.log(JSON.parse(localStorage.getItem('cardNames')));
-        }
       })
   }
 

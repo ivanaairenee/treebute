@@ -1,7 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 
-export default class MemberList extends React.Component {
+export default class RatingMainpage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rating: {},
+      feedback: {},
+      memberList: [],
+      memberRatingFeedback: [],
+    }
+  }
+
   componentDidMount() {
     const boardId = localStorage.getItem("boardId");
     axios.get(`https://api.trello.com/1/boards/${boardId}/cards/?fields=badges,name&members=true&member_fields=fullName&badges=true`)
@@ -18,9 +28,6 @@ export default class MemberList extends React.Component {
         }
         this.createCardWeights(cardNames);
         localStorage.setItem('cardNames', JSON.stringify(cardNames));
-        if (localStorage.getItem('cardNames')) {
-          console.log(JSON.parse(localStorage.getItem('cardNames')));
-        }
       }).then(() => {
       axios.get(`https://api.trello.com/1/boards/${boardId}/members/?fields=avatarUrl,fullName`)
         .then(res => {
@@ -54,9 +61,10 @@ export default class MemberList extends React.Component {
           this.createMemberRatingFeedback(memberList);
 
           localStorage.setItem('memberList', JSON.stringify(memberList));
-          if (localStorage.getItem('memberList')) {
-            console.log(JSON.parse(localStorage.getItem('memberList')));
-          }
+      }).then(() => {
+        const storageMemberList = JSON.parse(localStorage.getItem('memberList'));
+        const storageMemberRatingFeedback = JSON.parse(localStorage.getItem('memberRatingFeedback'));
+        this.setState({ memberList: storageMemberList, memberRatingFeedback: storageMemberRatingFeedback, });
       })
     })
   }
@@ -89,9 +97,50 @@ export default class MemberList extends React.Component {
     localStorage.setItem('memberRatingFeedback', JSON.stringify(memberRatingFeedback));
   }
 
+  setMemberRatingFeedback(idMember, idEvaluatedMember, rating, feedback) {
+    const memberRatingFeedback = JSON.parse(localStorage.getItem('memberRatingFeedback'));
+    if (memberRatingFeedback[idMember][idEvaluatedMember] !== undefined) {
+      memberRatingFeedback[idMember][idEvaluatedMember]['rating'] = rating;
+      memberRatingFeedback[idMember][idEvaluatedMember]['feedback'] = feedback;
+    }
+    localStorage.setItem('memberRatingFeedback', JSON.stringify(memberRatingFeedback));
+  }
+
+  handleChangeRating(idEvaluatedMember, value) {
+    this.state.rating.idEvaluatedMember = value;
+  }
+
+  handleChangeFeedback(idEvaluatedMember, value) {
+    this.state.feedback.idEvaluatedMember = value;
+  }
+
+  onSubmit(idEvaluatedMember) {
+    this.setMemberRatingFeedback(this.props.match.params.idMember, idEvaluatedMember, this.state.rating.idEvaluatedMember, this.state.feedback.idEvaluatedMember)
+  }
+
   render() {
+    const rateCards = [];
+    this.state.memberList.map(member => {
+      if (member.id !== this.props.match.params.idMember) {
+        rateCards.push(
+          <div>
+            <img src={member.avatarUrl} /><br />
+            <h5>Name: {member.fullName}</h5><br />
+            Mock Rating<br />
+            <input type='text' onChange={(evt) => this.handleChangeRating(member.id, evt.target.value)}></input><br />
+            Mock Feedback<br />
+            <input type='text' onChange={(evt) => this.handleChangeFeedback(member.id, evt.target.value)}></input><br />
+            <button onClick={() => this.onSubmit(member.id)}>Submit</button><br />
+          </div>
+        );
+      }
+    });
+
     return (
-        <div></div>
+      <div>
+        <h3>Rate and Feedback</h3>
+        { rateCards }
+      </div>
     );
   }
 }

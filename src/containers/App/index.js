@@ -4,9 +4,12 @@ import { Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import MainPage from 'containers/MainPage';
+import Dashboard from 'containers/Dashboard';
 import HomePage from 'containers/HomePage';
 import NotFoundPage from 'containers/NotFoundPage';
 import MemberList from 'containers/MemberList';
+import RatingMainpage from 'containers/RatingMainpage';
+import RateAndFeedback from 'containers/RateAndFeedback';
 
 import Navigation from 'components/Navigation';
 import TopBar from 'components/TopBar';
@@ -41,8 +44,11 @@ export default class App extends React.Component {
                 <div className="content">
                   <Switch>
                     <Route exact path="/" component={MainPage} />
+                    <Route exact path="/home" component={Dashboard} />
                     <Route exact path="/tasks" component={HomePage} />
                     <Route exact path="/members" component={MemberList} />
+                    <Route exact path="/rating" component={RatingMainpage} />
+                    <Route exact path="/rating/:idMember" component={RateAndFeedback} />
                     <Route component={NotFoundPage} />
                   </Switch>
                 </div>

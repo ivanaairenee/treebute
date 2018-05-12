@@ -1,7 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 
-export default class MemberList extends React.Component {
+export default class RatingMainpage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      memberList: [],
+    }
+  }
+
   componentDidMount() {
     const boardId = localStorage.getItem("boardId");
     axios.get(`https://api.trello.com/1/boards/${boardId}/cards/?fields=badges,name&members=true&member_fields=fullName&badges=true`)
@@ -18,9 +25,6 @@ export default class MemberList extends React.Component {
         }
         this.createCardWeights(cardNames);
         localStorage.setItem('cardNames', JSON.stringify(cardNames));
-        if (localStorage.getItem('cardNames')) {
-          console.log(JSON.parse(localStorage.getItem('cardNames')));
-        }
       }).then(() => {
       axios.get(`https://api.trello.com/1/boards/${boardId}/members/?fields=avatarUrl,fullName`)
         .then(res => {
@@ -54,9 +58,9 @@ export default class MemberList extends React.Component {
           this.createMemberRatingFeedback(memberList);
 
           localStorage.setItem('memberList', JSON.stringify(memberList));
-          if (localStorage.getItem('memberList')) {
-            console.log(JSON.parse(localStorage.getItem('memberList')));
-          }
+      }).then(() => {
+        const storageMemberList = JSON.parse(localStorage.getItem('memberList'));
+        this.setState({ memberList: storageMemberList, });
       })
     })
   }
@@ -89,9 +93,27 @@ export default class MemberList extends React.Component {
     localStorage.setItem('memberRatingFeedback', JSON.stringify(memberRatingFeedback));
   }
 
+  handleRateAndFeedback(idMember) {
+    window.location = '/rating/' + idMember;
+  }
+
   render() {
+    const memberCards = [];
+    this.state.memberList.map(member => {
+      memberCards.push(
+        <div>
+          <img src={member.avatarUrl} /><br />
+          <h5>Name: {member.fullName}</h5><br />
+          <button onClick={() => this.handleRateAndFeedback(member.id)}>Mock Login</button><br />
+        </div>
+      );
+    });
+
     return (
-        <div></div>
+      <div>
+        <h3>Rating</h3>
+        { memberCards }
+      </div>
     );
   }
 }
