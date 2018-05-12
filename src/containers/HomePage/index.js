@@ -70,8 +70,7 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <HomePageElement>
-        <i className="fas fa-tree" />hello
-s        <CardTask/>
+        <CardTask/>
       </HomePageElement>
     );
   }
