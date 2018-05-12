@@ -20,7 +20,7 @@ export default class TaskWeight extends React.Component {
   render() {
     return(
       <TaskWeightElement>
-        <input onChange={(evt) => this.handleChange(evt.target.value)} type="number" value={this.state.weight} />
+        <input onChange={(evt) => this.handleChange(evt.target.value)} type="number" min="1" max="10" value={this.state.weight} />
       </TaskWeightElement>
     )
   }
