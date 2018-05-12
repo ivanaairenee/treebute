@@ -43,7 +43,7 @@ export default class MemberList extends React.Component {
                       memberList.map((member) => {
                           if (card.assignee) {
                               if (member.id === card.assignee.id) {
-                                  member.contributionPoints += cardWeights[card.id];
+                                  member.contributionPoints += parseInt(cardWeights[card.id]);
                               }
                           }
                       })
