@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 
-export default class MemberList extends React.Component {
+export default class RatingMainpage extends React.Component {
   componentDidMount() {
-    axios.get(`https://api.trello.com/1/boards/q5x5LRZA/cards/?fields=badges,name&members=true&member_fields=fullName&badges=true`)
+    const boardId = localStorage.getItem("boardId");
+    axios.get(`https://api.trello.com/1/boards/${boardId}/cards/?fields=badges,name&members=true&member_fields=fullName&badges=true`)
       .then(res => {
         const cards = res.data;
         const cardNames = [];
@@ -18,7 +19,7 @@ export default class MemberList extends React.Component {
         this.createCardWeights(cardNames);
         localStorage.setItem('cardNames', JSON.stringify(cardNames));
       }).then(() => {
-      axios.get(`https://api.trello.com/1/boards/q5x5LRZA/members/?fields=avatarUrl,fullName`)
+      axios.get(`https://api.trello.com/1/boards/${boardId}/members/?fields=avatarUrl,fullName`)
         .then(res => {
           const members = res.data;
           const memberList = [];
@@ -91,10 +92,27 @@ export default class MemberList extends React.Component {
     localStorage.setItem('memberRatingFeedback', JSON.stringify(memberRatingFeedback));
   }
 
+  handleRateAndFeedback(idMember) {
+    window.location = '/rating/${idMember}';
+  }
+
+  createMemberCards = () => {
+    const memberList = JSON.parse(localStorage.getItem('memberRatingFeedback'));
+    let memberCards = [];
+    for (let i = 0; i < memberList.length; i++) {
+      memberCards[i] = (<button onClick={() => this.handleRateAndFeedback(memberList[i].id)}>Name: {memberList[i].fullName}</button>);
+    };
+    console.log(memberCards);
+    return memberCards;
+  }
+
+  
+
   render() {
     return (
         <div>
-          <button onClick={() => this.setMemberRatingFeedback('58ee272aebe5aa88726dda59', '5a9a7211e111abe37f3b3a9c', 9, 'ganteng bets')}>Aku ganteng</button>
+          <h1>Rating</h1>
+          {}
         </div>
     );
   }
