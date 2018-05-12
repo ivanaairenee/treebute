@@ -19,6 +19,10 @@ export default class MainPage extends React.Component {
     return new Promise((resolve, reject) => {
       const boardId = this.state.boardId;
       localStorage.setItem("boardId", boardId);
+      axios.get(`https://api.trello.com/1/boards/${boardId}/`)
+      .then(res => {
+        localStorage.setItem("boardName", res.data.name);
+      })
       resolve();
     }).then(() => {
       window.location = "/tasks";

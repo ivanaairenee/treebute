@@ -5,7 +5,10 @@ export default class RatingMainpage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      rating: {},
+      feedback: {},
       memberList: [],
+      memberRatingFeedback: [],
     }
   }
 
@@ -60,7 +63,8 @@ export default class RatingMainpage extends React.Component {
           localStorage.setItem('memberList', JSON.stringify(memberList));
       }).then(() => {
         const storageMemberList = JSON.parse(localStorage.getItem('memberList'));
-        this.setState({ memberList: storageMemberList, });
+        const storageMemberRatingFeedback = JSON.parse(localStorage.getItem('memberRatingFeedback'));
+        this.setState({ memberList: storageMemberList, memberRatingFeedback: storageMemberRatingFeedback, });
       })
     })
   }
@@ -93,26 +97,49 @@ export default class RatingMainpage extends React.Component {
     localStorage.setItem('memberRatingFeedback', JSON.stringify(memberRatingFeedback));
   }
 
-  handleRateAndFeedback(idMember) {
-    window.location = '/rating/' + idMember;
+  setMemberRatingFeedback(idMember, idEvaluatedMember, rating, feedback) {
+    const memberRatingFeedback = JSON.parse(localStorage.getItem('memberRatingFeedback'));
+    if (memberRatingFeedback[idMember][idEvaluatedMember] !== undefined) {
+      memberRatingFeedback[idMember][idEvaluatedMember]['rating'] = rating;
+      memberRatingFeedback[idMember][idEvaluatedMember]['feedback'] = feedback;
+    }
+    localStorage.setItem('memberRatingFeedback', JSON.stringify(memberRatingFeedback));
+  }
+
+  handleChangeRating(idEvaluatedMember, value) {
+    this.state.rating.idEvaluatedMember = value;
+  }
+
+  handleChangeFeedback(idEvaluatedMember, value) {
+    this.state.feedback.idEvaluatedMember = value;
+  }
+
+  onSubmit(idEvaluatedMember) {
+    this.setMemberRatingFeedback(this.props.match.params.idMember, idEvaluatedMember, this.state.rating.idEvaluatedMember, this.state.feedback.idEvaluatedMember)
   }
 
   render() {
-    const memberCards = [];
+    const rateCards = [];
     this.state.memberList.map(member => {
-      memberCards.push(
-        <div>
-          <img src={member.avatarUrl} /><br />
-          <h5>Name: {member.fullName}</h5><br />
-          <button onClick={() => this.handleRateAndFeedback(member.id)}>Mock Login</button><br />
-        </div>
-      );
+      if (member.id !== this.props.match.params.idMember) {
+        rateCards.push(
+          <div>
+            <img src={member.avatarUrl} /><br />
+            <h5>Name: {member.fullName}</h5><br />
+            Mock Rating<br />
+            <input type='text' onChange={(evt) => this.handleChangeRating(member.id, evt.target.value)}></input><br />
+            Mock Feedback<br />
+            <input type='text' onChange={(evt) => this.handleChangeFeedback(member.id, evt.target.value)}></input><br />
+            <button onClick={() => this.onSubmit(member.id)}>Submit</button><br />
+          </div>
+        );
+      }
     });
 
     return (
       <div>
-        <h3>Rating</h3>
-        { memberCards }
+        <h3>Rate and Feedback</h3>
+        { rateCards }
       </div>
     );
   }
