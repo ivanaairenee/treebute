@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ExampleComponent from 'components/ExampleComponent';
+import CardTask from 'components/CardTask';
 import { HomePageElement } from './style';
 
 export default class HomePage extends React.Component {
@@ -69,7 +70,8 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <HomePageElement>
-        <i className="fas fa-tree" />
+        <i className="fas fa-tree" />hello
+s        <CardTask/>
       </HomePageElement>
     );
   }
