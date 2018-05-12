@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const CardMemberElement = styled.div`
   background-color: ${props => props.theme.white};
   width: 300px;
-  padding: 20px;
+  height: 20rem;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   border-radius: 3px;

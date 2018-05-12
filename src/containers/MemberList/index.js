@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import CardMember from 'components/CardMember';
+import { MemberListElement } from './style';
 
 export default class MemberList extends React.Component {
   componentDidMount() {
@@ -19,9 +20,6 @@ export default class MemberList extends React.Component {
         }
         this.createCardWeights(cardNames);
         localStorage.setItem('cardNames', JSON.stringify(cardNames));
-        if (localStorage.getItem('cardNames')) {
-          console.log(JSON.parse(localStorage.getItem('cardNames')));
-        }
       }).then(() => {
       axios.get(`https://api.trello.com/1/boards/${boardId}/members/?fields=avatarUrl,fullName`)
         .then(res => {
@@ -51,11 +49,7 @@ export default class MemberList extends React.Component {
                   }
               })
           }
-
           localStorage.setItem('memberList', JSON.stringify(memberList));
-          if (localStorage.getItem('memberList')) {
-            console.log(JSON.parse(localStorage.getItem('memberList')));
-          }
       })
     })
   }
@@ -70,11 +64,29 @@ export default class MemberList extends React.Component {
     localStorage.setItem('cardWeights', JSON.stringify(cardWeights));
   }
 
+  getListOfCards() {
+    const members = JSON.parse(localStorage.getItem("memberList"));
+    let listOfCards;
+    if (members) {
+      listOfCards = members.map((member, index) => {
+        return (
+          <CardMember
+            key={index}
+            name={member.fullName}
+            avatar={member.avatarUrl}
+            contributionPoints={member.contributionPoints}
+          />
+        );
+      });
+    }
+    return listOfCards;
+  }
+
   render() {
     return (
-        <div>
-          <CardMember></CardMember>
-        </div>
+        <MemberListElement>
+          {this.getListOfCards()}
+        </MemberListElement>
     );
   }
 }

@@ -1,5 +1,6 @@
 {
-  "name": "danusin",
+  "name": "treebute",
+  "homepage": "http://treebute.netlify.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

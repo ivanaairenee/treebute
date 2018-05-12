@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import MainPage from 'containers/MainPage';
+import Dashboard from 'containers/Dashboard';
 import HomePage from 'containers/HomePage';
 import NotFoundPage from 'containers/NotFoundPage';
 import MemberList from 'containers/MemberList';
@@ -44,6 +45,7 @@ export default class App extends React.Component {
                 <div className="content">
                   <Switch>
                     <Route exact path="/" component={MainPage} />
+                    <Route exact path="/home" component={Dashboard} />
                     <Route exact path="/tasks" component={HomePage} />
                     <Route exact path="/members" component={MemberList} />
                     <Route exact path="/profile" component={Profile} />
