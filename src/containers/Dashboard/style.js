@@ -4,10 +4,25 @@ export const DashboardElement = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   background: ${props => props.theme.ivory};
 
   .chart {
   	width: 100%;
+  }
+
+  h1 {
+  	font-size: 1.5rem;
+  	margin: 0.5rem 0;
+  	font-weight: 400;
+  }
+
+  .planned {
+  	color: ${props => props.theme.green};
+  }
+
+  .actual {
+  	color: ${props => props.theme.blue};
   }
 `;

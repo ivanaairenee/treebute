@@ -15,6 +15,7 @@ export const AppElement = styled.div`
 
     .navigation {
       flex: 1;
+      background-color: ${props => props.theme.white};
     }
 
     .content {

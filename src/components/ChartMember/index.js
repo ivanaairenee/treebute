@@ -13,7 +13,7 @@ function chartData() {
         pointStrokeColor: '#fff',
         pointHighlightFill: '#fff',
         pointHighlightStroke: 'rgba(151,187,205,1)',
-        data: [5, 10, 20, 22, 30, 38, 40, 45, 55],
+        data: [5, 10, 20, 22, 30],
       },
     ]
   }

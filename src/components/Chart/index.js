@@ -9,8 +9,8 @@ function chartData() {
       {
         label: 'Planned',
         fillColor: 'rgba(220,220,220,0)',
-        strokeColor: 'blue',
-        pointColor: 'blue',
+        strokeColor: '#22BD9E',
+        pointColor: '#22BD9E',
         pointStrokeColor: '#fff',
         pointHighlightFill: '#fff',
         pointHighlightStroke: 'rgba(220,220,220,1)',
@@ -19,12 +19,12 @@ function chartData() {
       {
         label: 'Actual',
         fillColor: 'rgba(220,220,220,0)',
-        strokeColor: 'orange',
-        pointColor: 'orange',
+        strokeColor: '#4E6692',
+        pointColor: '#4E6692',
         pointStrokeColor: '#fff',
         pointHighlightFill: '#fff',
         pointHighlightStroke: 'rgba(151,187,205,1)',
-        data: [90, 85, 65, 55, 50, 43, 29, 19, 10],
+        data: [90, 85, 65, 55, 50],
       },
     ]
   }
