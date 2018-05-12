@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardTaskElement } from './style';
-import TaskWeight from '././TaskWeight'
+import TaskWeight from 'components/TaskWeight'
 export default class CardTask extends React.Component {
 
   render() {
