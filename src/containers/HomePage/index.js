@@ -13,7 +13,8 @@ export default class HomePage extends React.Component {
           cards.map(card => cardNames.push({
             name: card.name,
             assignee: card.members[0],
-            status: card.badges.checkItems === card.badges.checkItemsChecked ? "Complete" : "Incomplete"
+            status: card.badges.checkItems === card.badges.checkItemsChecked ? "Complete" : "Incomplete",
+            weight: 0,
           }));
         }
         localStorage.setItem('cardNames', JSON.stringify(cardNames));
@@ -25,7 +26,7 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <HomePageElement>
-        hello
+        <i className="fas fa-tree" />hello
         <ExampleComponent />
       </HomePageElement>
     );
