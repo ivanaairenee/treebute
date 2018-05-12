@@ -17,9 +17,6 @@ export default class MemberList extends React.Component {
         }
         this.createCardWeights(cardNames);
         localStorage.setItem('cardNames', JSON.stringify(cardNames));
-        if (localStorage.getItem('cardNames')) {
-          console.log(JSON.parse(localStorage.getItem('cardNames')));
-        }
       }).then(() => {
       axios.get(`https://api.trello.com/1/boards/q5x5LRZA/members/?fields=avatarUrl,fullName`)
         .then(res => {
@@ -53,9 +50,6 @@ export default class MemberList extends React.Component {
           this.createMemberRatingFeedback(memberList);
 
           localStorage.setItem('memberList', JSON.stringify(memberList));
-          if (localStorage.getItem('memberList')) {
-            console.log(JSON.parse(localStorage.getItem('memberList')));
-          }
       })
     })
   }
@@ -88,9 +82,20 @@ export default class MemberList extends React.Component {
     localStorage.setItem('memberRatingFeedback', JSON.stringify(memberRatingFeedback));
   }
 
+  setMemberRatingFeedback(idMember, idEvaluatedMember, rating, feedback) {
+    const memberRatingFeedback = JSON.parse(localStorage.getItem('memberRatingFeedback'));
+    if (memberRatingFeedback[idMember][idEvaluatedMember] !== undefined) {
+      memberRatingFeedback[idMember][idEvaluatedMember]['rating'] = rating;
+      memberRatingFeedback[idMember][idEvaluatedMember]['feedback'] = feedback;
+    }
+    localStorage.setItem('memberRatingFeedback', JSON.stringify(memberRatingFeedback));
+  }
+
   render() {
     return (
-        <div></div>
+        <div>
+          <button onClick={() => this.setMemberRatingFeedback('58ee272aebe5aa88726dda59', '5a9a7211e111abe37f3b3a9c', 9, 'ganteng bets')}>Aku ganteng</button>
+        </div>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CardTaskElement } from './style';
-import TaskWeight from 'components/TaskWeight'
+// import TaskWeight from 'components/TaskWeight'
 export default class CardTask extends React.Component {
 
   render() {
@@ -33,7 +33,7 @@ export default class CardTask extends React.Component {
             <div className='weight label'>
               Weight:
             </div>
-            <TaskWeight/>
+            {/* <TaskWeight/> */}
           </div>
         </div>
       </CardTaskElement>
