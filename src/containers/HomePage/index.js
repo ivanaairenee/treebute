@@ -12,16 +12,19 @@ export default class HomePage extends React.Component {
       .then(res => {
         const cards = res.data;
         const cardNames = [];
+        const today = new Date();
         if (cards) {
           cards.map(card => cardNames.push({
             id: card.id,
             name: card.name,
             assignee: card.members[0],
+            due: card.badges.due,
             status: card.badges.checkItems === card.badges.checkItemsChecked ? "Complete" : "Incomplete",
           }));
         }
         this.createCardWeights(cardNames);
         localStorage.setItem('cardNames', JSON.stringify(cardNames));
+        console.log(cardNames);
       })
   }
 
@@ -77,6 +80,7 @@ export default class HomePage extends React.Component {
           <CardTask
             key={index}
             id={card.id}
+            due={card.due}
             taskName={card.name}
             assignee={name}
             status={card.status}

@@ -20,28 +20,38 @@ export const CardTaskElement = styled.div`
 
     .status {
       display: flex;
-      height: 1.2rem;
+      height: 1.5rem;
       padding: 0 0.5rem;
       justify-content: center;
       align-items: center;
       border-radius: 1rem;
       border: 1px solid ${props => props.theme.gray};
-      font-size: 0.7rem;
+      font-size: 0.9rem;
       line-spacing: 0;
+      color: ${props => props.theme.white}
     }
 
     .complete {
-      color: ${props => props.theme.green}
+      background-color: ${props => props.theme.green}
     }
 
     .incomplete {
-      color: ${props => props.theme.red }
+      background-color: ${props => props.theme.red }
     }
+  }
+
+  .date {
+    font-size: 0.8rem;
+    color: ${props => props.theme.green};
+  }
+
+  .pastDue {
+    color: ${props => props.theme.red};
   }
 
   .assignee {
     font-size: 1rem;
-    color: ${props => props.theme.green};
+    color: ${props => props.theme.darkBlue};
     font-weight: 600;
   }
 

@@ -10,6 +10,7 @@ export const TopBarElement = styled.div`
   border-bottom: 1px solid ${props => props.theme.gray};
 
   .title {
+    font-size: 1.5rem;
     font-weight: 600;
   }
 `;
