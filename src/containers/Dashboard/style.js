@@ -14,7 +14,7 @@ export const DashboardElement = styled.div`
 
   h1 {
   	font-size: 1.5rem;
-  	margin: 0.5rem 0;
+  	margin: 0.2rem 0;
   	font-weight: 400;
   }
 
@@ -24,5 +24,10 @@ export const DashboardElement = styled.div`
 
   .actual {
   	color: ${props => props.theme.blue};
+  }
+
+  .commit {
+  	font-size: 1rem;
+  	margin: 0.5rem 0 0;
   }
 `;

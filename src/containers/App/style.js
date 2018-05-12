@@ -22,5 +22,9 @@ export const AppElement = styled.div`
       flex: 20;
       border-left: 1px solid ${theme.gray};
     }
+
+    .github {
+      margin: 1rem 0 0;
+    }
   }
 `;
