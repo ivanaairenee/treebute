@@ -29,7 +29,7 @@ export default class HomePage extends React.Component {
     const cardWeights = localStorage.getItem('cardWeights') === null ? {} : JSON.parse(localStorage.getItem('cardWeights'));
     cardNames.map(card => {
       if (cardWeights[card.id] === undefined) {
-        cardWeights[card.id] = 0;
+        cardWeights[card.id] = 1;
       }
     });
     localStorage.setItem('cardWeights', JSON.stringify(cardWeights));

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const ChartElement = styled.div`
-  
+export const CardMemberElement = styled.div`
+
 `;
