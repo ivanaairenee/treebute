@@ -16,7 +16,7 @@ export const CardTaskElement = styled.div`
     display: flex;
     justify-content: space-between;
     color: ${props => props.theme.black};
-    font-size: 1.8rem;
+    font-size: 1.3rem;
 
     .status {
       display: flex;

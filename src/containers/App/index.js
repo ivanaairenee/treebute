@@ -9,6 +9,7 @@ import NotFoundPage from 'containers/NotFoundPage';
 import MemberList from 'containers/MemberList';
 import RatingMainpage from 'containers/RatingMainpage';
 import RateAndFeedback from 'containers/RateAndFeedback';
+import Profile from 'containers/Profile';
 
 import Navigation from 'components/Navigation';
 import TopBar from 'components/TopBar';
@@ -45,6 +46,7 @@ export default class App extends React.Component {
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/tasks" component={HomePage} />
                     <Route exact path="/members" component={MemberList} />
+                    <Route exact path="/profile" component={Profile} />
                     <Route exact path="/rating" component={RatingMainpage} />
                     <Route exact path="/rating/:idMember" component={RateAndFeedback} />
                     <Route component={NotFoundPage} />

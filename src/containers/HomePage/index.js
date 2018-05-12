@@ -8,6 +8,7 @@ import { HomePageElement } from './style';
 export default class HomePage extends React.Component {
   componentDidMount() {
     const boardId = localStorage.getItem("boardId");
+    console.log(boardId);
     axios.get(`https://api.trello.com/1/boards/${boardId}/cards/?fields=badges,name&members=true&member_fields=fullName&badges=true`)
       .then(res => {
         const cards = res.data;
