@@ -19,16 +19,14 @@ export default class MainPage extends React.Component {
     return new Promise((resolve, reject) => {
       const boardId = this.state.boardId;
       localStorage.setItem("boardId", boardId);
-      axios.get(`https://api.trello.com/1/boards/${boardId}/`)
-      .then(res => {
+      resolve(boardId);
+    }).then((boardId) => {
+      return axios.get(`https://api.trello.com/1/boards/${boardId}/`)
+    }).then(res => {
         localStorage.setItem("boardName", res.data.name);
+        window.location = "/tasks";
       })
-      resolve();
-    }).then(() => {
-      window.location = "/tasks";
-    })
-    
-  }
+    }
   render() {
     return (
       <MainPageElement>
