@@ -22,7 +22,7 @@ export default class MemberList extends React.Component {
           console.log(JSON.parse(localStorage.getItem('cardNames')));
         }
       }).then(() => {
-      axios.get(`https://api.trello.com/1/boards/q5x5LRZA/members/?fields=avatarUrl,fullName`)
+      axios.get(`https://api.trello.com/1/boards/${boardId}/members/?fields=avatarUrl,fullName`)
         .then(res => {
           const members = res.data;
           const memberList = [];
