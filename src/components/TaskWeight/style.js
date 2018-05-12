@@ -1,21 +1,17 @@
 import styled from 'styled-components';
 
 export const TaskWeightElement = styled.div`
-  text-align: center;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-direction: row;
 
   input {
-    width: 60px;
-    padding: 10px;
+    width: 4rem;
+    font-size: 1rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    border: 1px solid ${props => props.theme.gray};
     text-align: center;
     display:inline;
-  }
-  button {
-    margin: 5px;
-    background: ${props => props.theme.green};
-    padding:8px;
-    text-decoration: none;
-    border: none;
-    font-size: 20px;
-    width: 50px;
   }
 `;

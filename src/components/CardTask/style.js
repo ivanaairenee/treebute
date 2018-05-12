@@ -1,50 +1,54 @@
 import styled from 'styled-components';
 
 export const CardTaskElement = styled.div`
-  margin: 0;
   background-color: ${props => props.theme.white};
-  .container {
-    background-color: ${props => props.theme.white};
-    width: 300px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-content: space-around;
-    border-radius: 3px;
-    -webkit-box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.3);
-    box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.3);
-    margin: 0px 0px 50px 50px;
-  }
+  width: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  border: 1px solid ${props => props.theme.gray};
+  margin: 1rem 1rem;
 
   .taskName {
-    padding: 10px;
-    margin: auto;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
     color: ${props => props.theme.black};
+    font-size: 1.8rem;
+
+    .status {
+      display: flex;
+      height: 1.2rem;
+      padding: 0 0.5rem;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1rem;
+      border: 1px solid ${props => props.theme.gray};
+      font-size: 0.7rem;
+      line-spacing: 0;
+    }
+
+    .complete {
+      color: ${props => props.theme.green}
+    }
+
+    .incomplete {
+      color: ${props => props.theme.red }
+    }
   }
 
-  .taskDetail {
-  }
-
-  .label {
-    color: ${props => props.theme.black};
-    font-weight: bold;
-    margin: 10px;
-  }
-
-  .complete {
+  .assignee {
+    font-size: 1rem;
     color: ${props => props.theme.green};
+    font-weight: 600;
   }
 
-  .incomplete {
-    color: ${props => props.theme.red};
-
-  }
-
-  .content {
-    margin-left: 7px;
-    font-weight: lighter;
+  .weight {
+    margin-top: 1rem;
+    font-weight: 0.8rem;
+    color: ${props => props.theme.black};    
   }
 
 `;

@@ -2,16 +2,25 @@ import React from 'react';
 import { TaskWeightElement } from './style';
 
 export default class TaskWeight extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      weight: '',
+    }
+  }
+  componentDidMount() {
+    const weight = this.props.weight;
+    this.setState({ weight: weight });
+  }
 
+  handleChange(value) {
+    this.props.setCardWeight(this.props.id, value);
+    this.setState({ weight: value })
+  }
   render() {
     return(
       <TaskWeightElement>
-          <div className='weight-container'>
-            <button class='btn-min'>-</button>
-            <input type='number' min='1' max='10'></input>
-            <button class='btn-plus'>+</button>
-
-          </div>
+        <input onChange={(evt) => this.handleChange(evt.target.value)} type="number" value={this.state.weight} />
       </TaskWeightElement>
     )
   }

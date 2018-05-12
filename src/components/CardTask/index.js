@@ -6,44 +6,25 @@ export default class CardTask extends React.Component {
   render() {
     return(
       <CardTaskElement>
-        <div className='container'>
-          <div className='taskName'>
-            {this.props.taskName}
-          </div>
-          <div className='taskDetail'>
-
-            <div className='assignee label'>
-              Assignee:<span className='content'>{this.props.assignee}</span>
+        <div className='taskName'>
+          {this.props.taskName}
+          {
+            this.props.status === "Complete" ?
+            <div className='status complete'>
+              Complete
             </div>
-
-            <div className='status label'>
-              Status:
-              {
-                this.props.status === "Complete" ?
-                <span className='complete content'>
-                  Complete
-                </span>
-                :
-                <span className='incomplete content'>
-                  Incomplete
-                </span>
-              }
+            :
+            <div className='status incomplete'>
+              Incomplete
             </div>
-
-            <div className='weight label'>
-              Weight:
-            </div>
-            <TaskWeight/>
-          </div>
+          }
         </div>
+        <div className="assignee">{this.props.assignee}</div>
+        <div className="weight">
+          Weight:
+        </div>
+        <TaskWeight id={this.props.id} weight={this.props.weight} setCardWeight={this.props.setCardWeight} />
       </CardTaskElement>
     )
   }
-}
-
-//set props for testing
-CardTask.defaultProps = {
-  taskName: "API Integration",
-  assignee: "Justin Sung",
-  status: "Incomplete"
 }

@@ -22,7 +22,7 @@ export default class HomePage extends React.Component {
         this.createCardWeights(cardNames);
         localStorage.setItem('cardNames', JSON.stringify(cardNames));
         if (localStorage.getItem('cardNames')) {
-          console.log(JSON.parse(localStorage.getItem('cardNames')));
+          // console.log(JSON.parse(localStorage.getItem('cardNames')));
         }
       })
   }
@@ -55,6 +55,7 @@ export default class HomePage extends React.Component {
   }
 
   setCardWeight(idCard, value) {
+    console.log(idCard);
     const cardNames = JSON.parse(localStorage.getItem('cardNames'));
     const cardWeights = JSON.parse(localStorage.getItem('cardWeights'));
     if (cardNames && cardWeights) {
@@ -68,9 +69,26 @@ export default class HomePage extends React.Component {
   }
 
   render() {
+    const cards = JSON.parse(localStorage.getItem("cardNames"));
+    const weightDictionary = JSON.parse(localStorage.getItem("cardWeights"));
+    const listOfCards = cards.map((card, index) => {
+      const name = card.assignee.fullName;
+      const weight = weightDictionary[card.id];
+      return (
+        <CardTask
+          key={index}
+          id={card.id}
+          taskName={card.name}
+          assignee={name}
+          status={card.status}
+          weight={weight}
+          setCardWeight={this.setCardWeight}
+        />
+      );
+    });
     return (
       <HomePageElement>
-        <CardTask></CardTask>
+        {listOfCards}
       </HomePageElement>
     );
   }
