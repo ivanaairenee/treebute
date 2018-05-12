@@ -7,14 +7,15 @@ export const MainPageElement = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: ${props => props.theme.gradientBackground};
-  color: ${props => props.theme.white};
+  background: ${props => props.theme.white};
+  color: ${props => props.theme.black};
 
   .title {
     margin: 0;
     font-size: 5rem;
     font-style: italic;
     font-weight: 400;
+    color: ${props => props.theme.green};
 
     .bold {
       font-weight: 700;
@@ -25,6 +26,7 @@ export const MainPageElement = styled.div`
     font-size: 1.2rem;
     font-weight: 400;
     letter-spacing: 0.3rem;
+    color: ${props => props.theme.darkBlue};
   }
 
   .inputProject {
@@ -34,21 +36,23 @@ export const MainPageElement = styled.div`
     margin-top: 5rem;
     font-size: 1rem;
     font-weight: 400;
-    letter-spacing: 0.3rem;
+    letter-spacing: 0.1rem;
 
     input {
       width: 100%;
       margin-top: 1rem;
       padding: 0.5rem;
       border-radius: 0.5rem;
+      border: 1px solid ${props => props.theme.gray};
     }
 
     button {
       margin-top: 1rem;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 2rem;
       font-size: 1rem;
       border: 0;
-      border-radius: 0.25rem;
+      border-radius: 1rem;
+      font-weight: 700;
       background: ${props => props.theme.green};
       color: ${props => props.theme.white};
     }
