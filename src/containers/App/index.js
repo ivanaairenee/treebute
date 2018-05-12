@@ -32,15 +32,7 @@ export default class App extends React.Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/tasks" component={HomePage} />
-          <Route exact path="/members" component={MemberList} />
-          <Route exact path="/rating" component={RatingMainpage} />
-          <Route path="/rating/:idMember" component={RateAndFeedback} />
-          <Route component={NotFoundPage} />
-        </Switch>
-        {/* {
+        {
           this.getCurrentActive() === "main" ? <MainPage /> :
             <AppElement>
               <TopBar />
@@ -53,12 +45,14 @@ export default class App extends React.Component {
                     <Route exact path="/" component={MainPage} />
                     <Route exact path="/tasks" component={HomePage} />
                     <Route exact path="/members" component={MemberList} />
+                    <Route exact path="/rating" component={RatingMainpage} />
+                    <Route exact path="/rating/:idMember" component={RateAndFeedback} />
                     <Route component={NotFoundPage} />
                   </Switch>
                 </div>
               </div>
             </AppElement>
-        } */}
+        }
       </ThemeProvider>
     );
   }
