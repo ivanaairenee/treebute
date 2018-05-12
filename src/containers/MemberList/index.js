@@ -13,9 +13,9 @@ export default class MemberList extends React.Component {
             name: card.name,
             assignee: card.members[0],
             status: card.badges.checkItems === card.badges.checkItemsChecked ? "Complete" : "Incomplete",
-            weight: 0,
           }));
         }
+        this.createCardWeights(cardNames);
         localStorage.setItem('cardNames', JSON.stringify(cardNames));
         if (localStorage.getItem('cardNames')) {
           console.log(JSON.parse(localStorage.getItem('cardNames')));
@@ -35,13 +35,14 @@ export default class MemberList extends React.Component {
           }
     
           const cardNames = JSON.parse(localStorage.getItem('cardNames'));
+          const cardWeights = JSON.parse(localStorage.getItem('cardWeights'));
           if (cardNames) {
               cardNames.map((card) => {
                   if (card.status === 'Complete') {
                       memberList.map((member) => {
                           if (card.assignee) {
                               if (member.id === card.assignee.id) {
-                                  member.contributionPoints += card.weight;
+                                  member.contributionPoints += cardWeights[card.id];
                               }
                           }
                       })
@@ -56,6 +57,17 @@ export default class MemberList extends React.Component {
       })
     })
   }
+
+  createCardWeights(cardNames) {
+    const cardWeights = localStorage.getItem('cardWeights') === null ? {} : JSON.parse(localStorage.getItem('cardWeights'));
+    cardNames.map(card => {
+      if (cardWeights[card.id] === undefined) {
+        cardWeights[card.id] = 0;
+      }
+    });
+    localStorage.setItem('cardWeights', JSON.stringify(cardWeights));
+  }
+
   render() {
     return (
         <div></div>
