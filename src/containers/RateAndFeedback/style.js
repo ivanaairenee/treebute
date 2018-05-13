@@ -55,6 +55,18 @@ export const RateFeedbackElement = styled.div`
       border: 1px solid ${props => props.theme.gray};
     }
 
+    .ratingContainer {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      color: yellow;
+
+      button {
+        border: none;
+        background: none;
+      }
+    }
+
     button {
       margin-top: 1rem;
       padding: 0.5rem 2rem;

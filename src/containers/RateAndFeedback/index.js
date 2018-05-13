@@ -131,7 +131,7 @@ export default class RateAndFeedback extends React.Component {
           <div className="card">
             <img src={member.avatarUrl} /><br />
             <h5>{member.fullName}</h5><br />
-            Rating
+            Rating (1-5)
             <input ref="rating" type='number' min="1" max="5" onChange={(evt) => this.handleChangeRating(member.id, evt.target.value)}></input><br />
             Feedback
             <input ref="feedback" type='text' onChange={(evt) => this.handleChangeFeedback(member.id, evt.target.value)}></input><br />
