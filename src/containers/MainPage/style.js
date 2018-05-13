@@ -56,5 +56,16 @@ export const MainPageElement = styled.div`
       background: ${props => props.theme.green};
       color: ${props => props.theme.white};
     }
+
+    .ratingContainer {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      color: yellow;
+
+      button {
+        border: none;
+      }
+    }
   }
 `;

@@ -28,6 +28,8 @@ export default class App extends React.Component {
       return 'profile';
     } else if (window.location.pathname.toLowerCase().indexOf('home') >= 0) {
       return 'home';
+    } else if (window.location.pathname.toLowerCase().indexOf('rating') >= 0) {
+      return 'rating';
     }
     return "main";
   }

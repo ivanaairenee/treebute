@@ -1,7 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
+import swal from 'sweetalert';
+import { RateFeedbackElement } from './style';
 
-export default class RatingMainpage extends React.Component {
+export default class RateAndFeedback extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -116,6 +119,8 @@ export default class RatingMainpage extends React.Component {
 
   onSubmit(idEvaluatedMember) {
     this.setMemberRatingFeedback(this.props.match.params.idMember, idEvaluatedMember, this.state.rating.idEvaluatedMember, this.state.feedback.idEvaluatedMember)
+    swal("Success", "Rating and Review successfully submitted", "success")
+    .then(() => window.location.reload());
   }
 
   render() {
@@ -123,13 +128,13 @@ export default class RatingMainpage extends React.Component {
     this.state.memberList.map(member => {
       if (member.id !== this.props.match.params.idMember) {
         rateCards.push(
-          <div>
+          <div className="card">
             <img src={member.avatarUrl} /><br />
-            <h5>Name: {member.fullName}</h5><br />
-            Mock Rating<br />
-            <input type='text' onChange={(evt) => this.handleChangeRating(member.id, evt.target.value)}></input><br />
-            Mock Feedback<br />
-            <input type='text' onChange={(evt) => this.handleChangeFeedback(member.id, evt.target.value)}></input><br />
+            <h5>{member.fullName}</h5><br />
+            Rating
+            <input ref="rating" type='number' min="1" max="5" onChange={(evt) => this.handleChangeRating(member.id, evt.target.value)}></input><br />
+            Feedback
+            <input ref="feedback" type='text' onChange={(evt) => this.handleChangeFeedback(member.id, evt.target.value)}></input><br />
             <button onClick={() => this.onSubmit(member.id)}>Submit</button><br />
           </div>
         );
@@ -137,10 +142,12 @@ export default class RatingMainpage extends React.Component {
     });
 
     return (
-      <div>
-        <h3>Rate and Feedback</h3>
-        { rateCards }
-      </div>
+      <RateFeedbackElement>
+        <h1>Rate and Feedback</h1>
+        <div className="cardContainer">
+          {rateCards}
+        </div>
+      </RateFeedbackElement>
     );
   }
 }

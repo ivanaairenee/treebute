@@ -20,13 +20,13 @@ export const CardTaskElement = styled.div`
 
     .status {
       display: flex;
-      height: 1.5rem;
-      padding: 0 0.5rem;
+      height: 1rem;
+      padding: 0.2rem 0.5rem;
       justify-content: center;
       align-items: center;
       border-radius: 1rem;
       border: 1px solid ${props => props.theme.gray};
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       line-spacing: 0;
       color: ${props => props.theme.white}
     }

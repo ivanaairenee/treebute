@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { RatingMainPageElement } from './style';
 
 export default class RatingMainpage extends React.Component {
   constructor(props) {
@@ -100,20 +101,22 @@ export default class RatingMainpage extends React.Component {
   render() {
     const memberCards = [];
     this.state.memberList.map(member => {
+      const firstName = member.fullName.split(" ")[0];
       memberCards.push(
-        <div>
-          <img src={member.avatarUrl} /><br />
-          <h5>Name: {member.fullName}</h5><br />
-          <button onClick={() => this.handleRateAndFeedback(member.id)}>Mock Login</button><br />
+        <div className="card">
+          <img src={member.avatarUrl} />
+          <button onClick={() => this.handleRateAndFeedback(member.id)}>Login as {firstName}</button><br />
         </div>
       );
     });
 
     return (
-      <div>
-        <h3>Rating</h3>
-        { memberCards }
-      </div>
+      <RatingMainPageElement>
+        <h1>Peer Review</h1>
+        <div className="cardContainer">
+          { memberCards }
+        </div>
+      </RatingMainPageElement>
     );
   }
 }

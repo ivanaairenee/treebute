@@ -37,7 +37,7 @@ export default class Dashboard extends React.Component {
         </div>
         <h1 className="planned">Total Project Weight: {this.getTotalProjectWeight()}</h1>
         <h1 className="actual">Total Weight Completed: {this.getCompletedProjectWeight()}</h1>
-        <h1 className="commit">Project's Github Contribution:</h1>
+        <h1 className="commit">Team's Github Contribution:</h1>
         <img class="github" src="http://ghchart.rshah.org/fabpot" alt="Project X's Github chart" />
       </DashboardElement>
     )

@@ -28,6 +28,6 @@ export const DashboardElement = styled.div`
 
   .commit {
   	font-size: 1rem;
-  	margin: 0.5rem 0 0;
+  	margin: 1.5rem 0 0;
   }
 `;
