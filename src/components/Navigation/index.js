@@ -26,6 +26,11 @@ export default class Navigation extends React.Component {
             <i className="fas fa-user" />
           </div>
         </Link>
+        <Link to="rating" className="link">
+          <div className={this.props.currentActive === "rating" ? "menuItem active" : "menuItem"}>
+            <i className="fas fa-star" />
+          </div>
+        </Link>
       </NavigationElement>
     );
   }
