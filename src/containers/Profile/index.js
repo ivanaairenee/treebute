@@ -5,6 +5,12 @@ import Chart from 'components/ChartMember'
 
 export default class Profile extends React.Component {
   componentDidMount() {
+    if (localStorage.getItem("refreshprofile") === null) {
+        localStorage.setItem("refreshprofile", "true");
+        setTimeout(() => window.location.reload(), 1000);
+    }
+
+    window.addEventListener('beforeunload', this.componentCleanup);
     const boardId = localStorage.getItem("boardId");
     axios.get(`https://api.trello.com/1/boards/${boardId}/cards/?fields=badges,name&members=true&member_fields=fullName&badges=true`)
       .then(res => {
@@ -58,6 +64,13 @@ export default class Profile extends React.Component {
           }
       })
     })
+  }
+  componentCleanup() {
+    localStorage.removeItem("refreshprofile");
+  }
+
+  componentWillUnmount() {
+    localStorage.removeItem("refreshprofile");
   }
   render() {
     const members = JSON.parse(localStorage.getItem("memberList"));

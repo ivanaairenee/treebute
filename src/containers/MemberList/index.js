@@ -5,7 +5,14 @@ import { MemberListElement } from './style';
 
 export default class MemberList extends React.Component {
   componentDidMount() {
+    if (localStorage.getItem("refresh") === null) {
+        localStorage.setItem("refresh", "true");
+        setTimeout(() => window.location.reload(), 1000);
+    }
+
+    window.addEventListener('beforeunload', this.componentCleanup);
     const boardId = localStorage.getItem("boardId");
+    const that = this;
     axios.get(`https://api.trello.com/1/boards/${boardId}/cards/?fields=badges,name&members=true&member_fields=fullName&badges=true`)
       .then(res => {
         const cards = res.data;
@@ -53,6 +60,13 @@ export default class MemberList extends React.Component {
       })
     })
   }
+  componentCleanup() {
+    localStorage.removeItem("refresh");
+  }
+
+  componentWillUnmount() {
+    localStorage.removeItem("refresh");
+  }
 
   createCardWeights(cardNames) {
     const cardWeights = localStorage.getItem('cardWeights') === null ? {} : JSON.parse(localStorage.getItem('cardWeights'));
@@ -62,6 +76,7 @@ export default class MemberList extends React.Component {
       }
     });
     localStorage.setItem('cardWeights', JSON.stringify(cardWeights));
+    this.forceUpdate();
   }
 
   getListOfCards() {
