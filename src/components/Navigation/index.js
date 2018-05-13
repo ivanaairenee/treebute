@@ -21,12 +21,12 @@ export default class Navigation extends React.Component {
             <i className="fas fa-users" />
           </div>
         </Link>
-        <Link to="profile" className="link">
+        <Link to="/profile" className="link">
           <div className={this.props.currentActive === "profile" ? "menuItem active" : "menuItem"}>
             <i className="fas fa-user" />
           </div>
         </Link>
-        <Link to="rating" className="link">
+        <Link to="/rating" className="link">
           <div className={this.props.currentActive === "rating" ? "menuItem active" : "menuItem"}>
             <i className="fas fa-star" />
           </div>
